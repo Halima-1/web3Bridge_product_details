@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="styles/cart.css"/>
+    <link rel="stylesheet" href="styles/style.scss"/>
+
+  </head>
+  <body>
+    <header>
+        <nav>
+            <h1>Sneakers</h1>
+            <ul>
+                <li><a class="nav-item"  href="">Collections</a></li>
+    
+                <li><a class="nav-item" href="">Men</a></li>
+                <li><a class="nav-item" href="">Women</a></li>
+                <li><a class="nav-item"  href="">About</a></li>
+                <li><a class="nav-item"  href="">Contact</a></li>
+            </ul>
+            <ul>
+                <li><a href="cart.html"><span id="cartIcon"></span><img src="assets/images/icon-cart.svg" alt="" class="cart-svg" ></a>
+                  </li>
+                  <li><img src="assets/images/image-avatar.png" alt="logo"></li>
+            </ul>
+        </nav>
+    </header>
+    <main style="margin-top: 80px;">
+      <div class="container">
+        <div class="item">
+          <p id="itemLength"></p>
+          <b>keep shopping</b>
+        </div>                                                                                                                                                                                                                                                                  
+         <div id="cartContainer">
+            <div id="productDetails">
+
+            </div>
+
+              <div class="toCheckout">
+          <div class="toGet">
+            <p><b>How do you want to get your item?</b></p>
+            <div>
+              <p id="delivery" onclick="ToDeliver()">Delivery</p>
+              <p id="pickUp" onclick="ToPickUp()">Pick up</p>
+            </div>
+          </div>
+          <div id="details">
+            <p><b>Order details</b></p>
+            <button id="checkout"><a href="payment.html">proceed to checkout</a></button>
+           
+          </div>
+        </div>
+            </div>
+          </div>
+        
+    </main>
+
+    <script src="cart.js"></script>
+  </body>
+</html>

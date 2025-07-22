@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+body {
+  color: #f5f8fa;
+  width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: rgb(6, 41, 10);
+  font-family: "Lato", serif;
+}
+
+h1,
+h2 {
+  font-family: "Rubik", sans-serif;
+}
+
+p {
+  font-size: 14px;
+}
+
+header {
+  width: 90%;
+  margin: auto;
+  padding: 25px 0;
+}
+header nav {
+  padding: 20px;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: rgb(2, 6, 8);
+  font-size: 14px;
+}
+header .nav-brand {
+  margin: 0;
+}
+header select {
+  outline: none;
+  border: none;
+  background-color: rgba(201, 201, 206, 0.849);
+}
+header .nav-icon {
+  margin-top: 2px;
+}
+header ul {
+  /* width: 100%;
+  padding: 20px 40px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+}
+header li {
+  list-style: none;
+}
+header .nav-item {
+  font-size: 16px;
+  text-decoration: none;
+  color: rgb(117, 111, 111);
+  /* margin-left: ; */
+}
+header .nav-item:hover {
+  border-top: 3px solid navy;
+  color: black;
+  background-color: rgb(240, 243, 247);
+  color: rgb(160, 154, 154);
+  padding: 2px;
+  border-radius: 5px;
+}
+header li img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+}
+header .cart-svg {
+  width: 30px;
+  height: 30px;
+}
+header span {
+  color: white;
+  position: absolute;
+  background-color: red;
+  padding: 0 4px;
+  border-radius: 100%;
+  font-size: 12px;
+}
+
+main {
+  width: 90%;
+  margin: auto;
+}
+main #products {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+main #products .products {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(241, 234, 234);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: rgb(175, 240, 175);
+}
+main #products .products .wish {
+  width: fit-content;
+  position: relative;
+  background-color: rgb(250, 236, 154);
+  border-radius: 100%;
+  padding: 2px;
+  margin-right: 10px;
+  align-self: flex-end;
+  top: 10px;
+  z-index: 1;
+}
+main #products .products .wish:hover {
+  background-color: rgb(250, 236, 154);
+  cursor: pointer;
+}
+main #products .products .wish svg {
+  margin-bottom: -5px;
+  width: 18px;
+  height: 18px;
+}
+main #products .products .wish svg:hover {
+  width: 23px;
+  height: 23px;
+}
+main #products .products .image {
+  width: 100%;
+  margin-top: -24px;
+}
+main #products .products .image img {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+  border-radius: 10px 10px 0 0;
+}
+main #products .products .product_stock_btn {
+  width: 40%;
+  margin: 10px auto;
+}
+main #products .products .add_to_cart {
+  border: none;
+  padding: 10px;
+  background-color: rgb(0, 255, 0);
+  color: white;
+  /* width: 120px  ; */
+  margin: auto;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  width: 80%;
+  height: max-content;
+}
+main section {
+  display: flex;
+  flex-direction: column;
+}
+main section :nth-child(1) {
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+main section :nth-child(1) img {
+  width: 100%;
+}
+main section :nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+main section :nth-child(2) div {
+  width: 24%;
+}
+main section :nth-child(2) div img {
+  width: 100%;
+  border: 2px solid white;
+  border-radius: 10px;
+  height: 120px;
+}
+main :nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 200px;
+}
+main :nth-child(2) .logo {
+  color: gray;
+  text-transform: uppercase;
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+main :nth-child(2) p {
+  color: gray;
+  margin-bottom: 0;
+}
+main :nth-child(2) h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 40px;
+  margin-bottom: 30px;
+}
+main :nth-child(2) #price div {
+  display: flex;
+  flex-direction: row;
+  width: 25%;
+  height: 30px;
+  margin-top: 20px;
+}
+main :nth-child(2) #price div :nth-child(1) {
+  margin: 0;
+}
+main :nth-child(2) #price div .discount {
+  background-color: black;
+  padding: 2px 8px;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 5px;
+  width: max-content;
+  height: max-content;
+}
+main :nth-child(2) #price #oldPrice {
+  text-decoration: line-through;
+}
+main :nth-child(2) #add-to-cart {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+  margin-top: -150px;
+}
+main :nth-child(2) #add-to-cart #increament {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  height: 120px;
+}
+main :nth-child(2) #add-to-cart #increament p {
+  margin-top: 6px;
+}
+main :nth-child(2) #add-to-cart #increament b {
+  color: hsl(26, 100%, 55%);
+  font-size: 1.7rem;
+}
+main :nth-child(2) #add-to-cart input {
+  background-color: hsl(26, 100%, 55%);
+  width: 30%;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+}
+main :nth-child(2) #add-to-cart #cart {
+  background-color: hsl(26, 100%, 55%);
+}
+
+/*# sourceMappingURL=style.css.map */
