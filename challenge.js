@@ -56,27 +56,74 @@ if (products) {
 const disitem = JSON.parse(localStorage.getItem("displayItem")) || products
 
 const displayItem = disitem[0].images[0]
+const next = () => {
+    const displayingProduct = JSON.parse(localStorage.getItem("displayItem")) || products
+    // const displayProduct = products.filter(item => item.id === id)
 
-const maain = document.getElementById("main");
-maain.innerHTML = `
-<div>
-<img src="./${displayItem}" alt="">
+    if (displayingProduct[0].id == 4) {
+        console.log(displayingProduct[0].id)
+        const firstItem = products.find(item, index => (item.id == 1))
+        return
+    }
+    else {
+        displayingProduct[0].id += 1
+        console.log(displayingProduct)
+        localStorage.setItem("displayItem", JSON.stringify(displayingProduct))
+        window.location.href = "index.html"
+    }
+}
+const screenResize = () => {
+    const disitem = JSON.parse(localStorage.getItem("displayItem")) || products
 
-</div>
-<div id="display">
-   
-</div>
-
-`
-
-const loadImage = document.getElementById("display");
-products.map((item, index) => {
-    loadImage.innerHTML += ` <div>
+    const displayItem = disitem[0].images[0]
+    if (window.innerWidth >= 768) {
+        const maain = document.getElementById("main");
+        maain.innerHTML = `
+    <div>
+    <img src="./${displayItem}" alt="">
+    
+    </div>
+    <div id="display">
+       
+    </div>
+    
+    `
+        const loadImage = document.getElementById("display");
+        products.map((item, index) => {
+            loadImage.innerHTML += ` <div>
     <img src="${item.images[0]}" alt="" onclick="imageLoad(${item.id})">
 </div>`
-})
+        })
+    }
+    else {
+        const maain = document.getElementById("main");
+        maain.innerHTML = `
+        <div class="svg">
+        <img id="svg-icon" src="assets/images/icon-previous.svg" alt="">
+    <img id="svg-icon" src="assets/images/icon-next.svg" alt="" onclick ="next()">
 
+      </div>
+    <div>
+    
+    <img src="./${displayItem}" alt="">
+
+    </div>
+    <div id="display">
+       
+    </div>
+    
+    `
+        //     const loadImage = document.getElementById("display");
+        //     products.map((item, index) => {
+        //         loadImage.innerHTML += ` <div>
+        //     <img src="${item.images[0]}" alt="" onclick="imageLoad(${item.id})">
+        // </div>`
+        //     })
+    }
+}
 // 
+window.addEventListener("resize", screenResize);
+window.addEventListener("load", screenResize);
 
 const imageLoad = (id) => {
     // localStorage.setItem("id", index)
@@ -94,7 +141,7 @@ price.innerHTML = ` <div>
 
 <p class="discount">50%</p>
 </div>
-<p id="oldPrice">${disitem[0].oldPrice}</p>`
+<p id="oldPrice">$${disitem[0].oldPrice}</p>`
 
 
 // add to cart
@@ -102,7 +149,7 @@ const carrt = document.getElementById("add-to-cart")
 // const cartlength =localStorage.getItem(cart)
 carrt.innerHTML = ` <div id="increament">
 <b onclick="increament()">+</b>
-<p id="qty">0</p>
+<p id="qty"></p>
 
 <b onclick="decreament()">-</b>
 </div>
@@ -128,26 +175,31 @@ function addToCart() {
     } else {
         console.log("no existing item")
         cart.unshift({ ...productL, quantity: 1 });
-        window.location.href = "index.html"
 
     }
+    window.location.href = "index.html"
+
     console.log(cart.length);
     console.log(existingItem);
     localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
 
 
     //   let storage = localStorage.getItem(cart);
     //   console.log(storage.length);
     //   removeCart();
     // cart.reduce(current, value)
-
+    const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty")) || []
+    console.log(itemInCart);
     // updateCartCount();
 }
+const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty"))
+console.log(itemInCart);
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 document.getElementById("cartIcon").innerHTML = cart.length
-
-// decreament
+document.getElementById("qty").innerHTML = itemInCart.quantity || 0
 
 const increament = () => {
     const existingItem = cart.find((item) => item.id === disitem[0].id);
@@ -158,6 +210,10 @@ const increament = () => {
         localStorage.setItem("cart", JSON.stringify(cart));
 
     }
+    localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
+
+    window.location.href = "index.html"
+
 }
 
 // increament
@@ -172,5 +228,22 @@ const decreament = () => {
 
         }
         else { return }
+    }
+    localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
+
+    window.location.href = "index.html"
+
+}
+
+// display side nav
+const displaynav = () => {
+    const aside = document.getElementById("aside")
+    if (aside.classList.contains("hide")) {
+        aside.classList.remove("hide")
+        aside.classList.add("show")
+    }
+    else {
+        aside.classList.remove("show")
+        aside.classList.add("hide")
     }
 }

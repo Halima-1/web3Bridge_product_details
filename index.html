@@ -18,9 +18,16 @@
 </head>
 <body>
   <header>
+    <div id="span" onclick="displaynav()">
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
     <nav>
+      
         <h1>Sneakers</h1>
-        <ul>
+
+        <ul class="navv">
             <li><a class="nav-item"  href="">Collections</a></li>
 
             <li><a class="nav-item" href="">Men</a></li>
@@ -28,22 +35,32 @@
             <li><a class="nav-item"  href="">About</a></li>
             <li><a class="nav-item"  href="">Contact</a></li>
         </ul>
-        <ul>
+        <ul class="logo">
             <li><a href="cart.html"><span id="cartIcon"></span><img src="assets/images/icon-cart.svg" alt="" class="cart-svg" ></a>
               </li>
               <li><img src="assets/images/image-avatar.png" alt="logo"></li>
         </ul>
     </nav>
 </header>
+<aside id="aside" class="hide">
+  <ul>
+    <li><a class="nav-item"  href="">Collections</a></li>
+
+    <li><a class="nav-item" href="">Men</a></li>
+    <li><a class="nav-item" href="">Women</a></li>
+    <li><a class="nav-item"  href="">About</a></li>
+    <li><a class="nav-item"  href="">Contact</a></li>
+</ul>
+</aside>
 <main >
 
     <section id="main">
        
     </section>
     <section>
-        <p class="logo" >  Sneaker Company
-        </p>
-        <h1>  Fall Limited Edition Sneakers
+        <p class="logo" >  Sneaker Company        </p>
+
+          <h1>  Fall Limited Edition Sneakers
         </h1>
         <p>These low-profile sneakers are your perfect casual wear companion. Featuring a 
           durable rubber outer sole, they’ll withstand everything the weather can offer.
@@ -57,7 +74,9 @@
            
           </div>
        </section>
+     
 </main>
+
   <!-- Collections
   Men
   Women
@@ -78,10 +97,11 @@
   0
   Add to cart
    -->
-  <div class="attribution">
+  <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Halima</a>.
-  </div>
+  </div> -->
+  
 </body>
 <script src="challenge.js"></script>
 </html>
