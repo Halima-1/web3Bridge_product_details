@@ -140,8 +140,9 @@ price.innerHTML = ` <div>
 <h3>$${disitem[0].price}</h3> 
 
 <p class="discount">50%</p>
-</div>
-<p id="oldPrice">$${disitem[0].oldPrice}</p>`
+</div> 
+<p id="oldPrice">$${disitem[0].oldPrice}</p>
+`
 
 
 // add to cart
