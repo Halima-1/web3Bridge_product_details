@@ -3,6 +3,8 @@ const product = [
         id: 1,
         price: 125,
         oldPrice: 250,
+        quantity: 0,
+
         images: [
             "assets/images/image-product-1.jpg", "assets/images/image-product-1-thumbnail.jpg"
 
@@ -12,6 +14,8 @@ const product = [
         id: 2,
         price: 155,
         oldPrice: 310,
+        quantity: 0,
+
         images: [
             "assets/images/image-product-2.jpg", "assets/images/image-product-2-thumbnail.jpg"
 
@@ -20,6 +24,7 @@ const product = [
         id: 3,
         price: 120,
         oldPrice: 240,
+        quantity: 0,
 
         images: [
             "assets/images/image-product-3.jpg", "assets/images/image-product-3-thumbnail.jpg"
@@ -29,6 +34,8 @@ const product = [
         id: 4,
         price: 175,
         oldPrice: 350,
+        quantity: 0,
+
         images: [
             "assets/images/image-product-4.jpg", "assets/images/image-product-4-thumbnail.jpg"
 
@@ -44,38 +51,26 @@ localStorage.setItem("products", JSON.stringify(product))
 
 const products = JSON.parse(localStorage.getItem("products"))
 
-// const product = products.find(p => p.id === id);
-if (products) {
-    console.log(products[0].images[0])
-
-} else {
-    // document.body.innerHTML = `<p>Product not found</p>`;
-    console.log("no product")
-
-}
 const disitem = JSON.parse(localStorage.getItem("displayItem")) || products
 
 const displayItem = disitem[0].images[0]
-const next = () => {
-    const displayingProduct = JSON.parse(localStorage.getItem("displayItem")) || products
-    // const displayProduct = products.filter(item => item.id === id)
+// const next = () => {
+//     const displayingProduct = JSON.parse(localStorage.getItem("displayItem")) || products
+//     // const displayProduct = products.filter(item => item.id === id)
 
-    if (displayingProduct[0].id == 4) {
-        console.log(displayingProduct[0].id)
-        const firstItem = products.find(item, index => (item.id == 1))
-        return
-    }
-    else {
-        displayingProduct[0].id += 1
-        console.log(displayingProduct)
-        localStorage.setItem("displayItem", JSON.stringify(displayingProduct))
-        window.location.href = "index.html"
-    }
-}
+//     if (displayingProduct[0].id == 4) {
+//         console.log(displayingProduct[0].id)
+//         const firstItem = products.find(item, index => (item.id == 1))
+//         return
+//     }
+//     else {
+//         displayingProduct[0].id += 1
+//         console.log(displayingProduct)
+//         localStorage.setItem("displayItem", JSON.stringify(displayingProduct))
+//         window.location.href = "index.html"
+//     }
+// }
 const screenResize = () => {
-    const disitem = JSON.parse(localStorage.getItem("displayItem")) || products
-
-    const displayItem = disitem[0].images[0]
     if (window.innerWidth >= 768) {
         const maain = document.getElementById("main");
         maain.innerHTML = `
@@ -86,7 +81,6 @@ const screenResize = () => {
     <div id="display">
        
     </div>
-    
     `
         const loadImage = document.getElementById("display");
         products.map((item, index) => {
@@ -113,22 +107,16 @@ const screenResize = () => {
     </div>
     
     `
-        //     const loadImage = document.getElementById("display");
-        //     products.map((item, index) => {
-        //         loadImage.innerHTML += ` <div>
-        //     <img src="${item.images[0]}" alt="" onclick="imageLoad(${item.id})">
-        // </div>`
-        //     })
     }
 }
 // 
 window.addEventListener("resize", screenResize);
 window.addEventListener("load", screenResize);
-
+let existingItem = [];
+localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
 const imageLoad = (id) => {
-    // localStorage.setItem("id", index)
     const displayProduct = products.filter(item => item.id === id)
-    console.log(displayProduct)
+    // console.log(displayProduct[0].quantity)
     localStorage.setItem("displayItem", JSON.stringify(displayProduct))
     window.location.href = "index.html"
     // price.innerHTML =
@@ -160,9 +148,13 @@ carrt.innerHTML = ` <div id="increament">
 <!-- <img src="./assets/images/icon-cart.svg" alt=""> -->
 <!-- <p></p> -->
 </div>`
+console.log(disitem[0].id);
+//  existingItem = [];
+// localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
+
 function addToCart() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const productL = products.find((item) => item.id === disitem[0].id);
+    let productL = products.find((item) => item.id === disitem[0].id);
     if (!productL) {
         console.log("product not found");
         console.log(disitem[0].id);
@@ -170,50 +162,74 @@ function addToCart() {
         return;
     }
 
-    const existingItem = cart.find((item) => item.id === disitem[0].id);
+    existingItem = cart.find((item) => item.id === disitem[0].id);
+
     if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity = existingItem.quantity + 1;
+        localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
+        document.getElementById("qty").innerHTML = existingItem.quantity
+
+        // return
     } else {
         console.log("no existing item")
-        cart.unshift({ ...productL, quantity: 1 });
+        cart.unshift({ ...productL, quantity: productL.quantity + 1 });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
 
+        window.location.href = "index.html"
+        // console.log(productLl);
     }
-    window.location.href = "index.html"
-
+    // const show =disitem.find
     console.log(cart.length);
     console.log(existingItem);
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
-
-
-    //   let storage = localStorage.getItem(cart);
-    //   console.log(storage.length);
-    //   removeCart();
-    // cart.reduce(current, value)
-    const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty")) || []
-    console.log(itemInCart);
+    let productLl = cart.find((item) => item.id === disitem[0].id);
+    document.getElementById("qty").innerHTML = existingItem.quantity
+    // console.log(itemInCart);
     // updateCartCount();
 }
 const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty"))
-console.log(itemInCart);
+
+if (itemInCart.quantity) {
+    document.getElementById("qty").innerHTML = itemInCart.quantity[0]
+}
+else {
+    document.getElementById("qty").innerHTML = 0
+}
+
+// const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty")) || []
+// console.log(itemInCart);
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 document.getElementById("cartIcon").innerHTML = cart.length
-document.getElementById("qty").innerHTML = itemInCart.quantity || 0
+// document.getElementById("qty").innerHTML = itemInCart.quantity || 0
 
 const increament = () => {
     const existingItem = cart.find((item) => item.id === disitem[0].id);
 
+
+    // const existingItem = cart.find((item) => item.id === disitem[0].id);
+    const productL = products.find((item) => item.id === disitem[0].id);
+
     if (existingItem) {
         existingItem.quantity += 1;
-        console.log(existingItem);
-        localStorage.setItem("cart", JSON.stringify(cart));
 
+        localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
+    } else {
+        console.log("no existing item")
+        cart.unshift({ ...productL, quantity: 1 });
     }
-    localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
+    // if (existingItem) {
+    //     existingItem.quantity += 1;
+    //     console.log(existingItem);
+    //     localStorage.setItem("cart", JSON.stringify(cart));
 
-    window.location.href = "index.html"
+    // }
+    // localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
+
+    // window.location.href = "index.html"
 
 }
 

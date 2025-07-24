@@ -3,6 +3,8 @@ const product = [
         id: 1,
         price: 125,
         oldPrice: 250,
+        quantity: 0,
+
         images: [
             "assets/images/image-product-1.jpg", "assets/images/image-product-1-thumbnail.jpg"
 
@@ -12,6 +14,8 @@ const product = [
         id: 2,
         price: 155,
         oldPrice: 310,
+        quantity: 0,
+
         images: [
             "assets/images/image-product-2.jpg", "assets/images/image-product-2-thumbnail.jpg"
 
@@ -21,6 +25,7 @@ const product = [
         price: 120,
         oldPrice: 240,
 
+        quantity: 0,
         images: [
             "assets/images/image-product-3.jpg", "assets/images/image-product-3-thumbnail.jpg"
 
@@ -29,6 +34,8 @@ const product = [
         id: 4,
         price: 175,
         oldPrice: 350,
+        quantity: 0,
+
         images: [
             "assets/images/image-product-4.jpg", "assets/images/image-product-4-thumbnail.jpg"
 
@@ -39,19 +46,23 @@ const product = [
 
 localStorage.setItem("products", JSON.stringify(product))
 
+// const urlParams = new URLSearchParams(window.location.search);
+// const id = parseInt(urlParams.get("id"));
+
 const products = JSON.parse(localStorage.getItem("products"))
 
-// if (products) {
-//     console.log(products[0].images[0])
+// const product = products.find(p => p.id === id);
+if (products) {
+    console.log(products[0].images[0])
 
-// } else {
-//     // document.body.innerHTML = `<p>Product not found</p>`;
-//     console.log("no product")
+} else {
+    // document.body.innerHTML = `<p>Product not found</p>`;
+    console.log("no product")
 
-// }
-const displayItem = JSON.parse(localStorage.getItem("displayItem")) || products
+}
+const disitem = JSON.parse(localStorage.getItem("displayItem")) || products
 
-const displayImage = displayItem[0].images[0]
+const displayItem = disitem[0].images[0]
 const next = () => {
     const displayingProduct = JSON.parse(localStorage.getItem("displayItem")) || products
     // const displayProduct = products.filter(item => item.id === id)
@@ -64,19 +75,19 @@ const next = () => {
     else {
         displayingProduct[0].id += 1
         console.log(displayingProduct)
-        localStorage.setItem("displayImage", JSON.stringify(displayingProduct))
+        localStorage.setItem("displayItem", JSON.stringify(displayingProduct))
         window.location.href = "index.html"
     }
 }
 const screenResize = () => {
-    const displayItem = JSON.parse(localStorage.getItem("displayImage")) || products
+    const disitem = JSON.parse(localStorage.getItem("displayItem")) || products
 
-    const displayImage = displayItem[0].images[0]
+    const displayItem = disitem[0].images[0]
     if (window.innerWidth >= 768) {
         const maain = document.getElementById("main");
         maain.innerHTML = `
     <div>
-    <img src="./${displayImage}" alt="">
+    <img src="./${displayItem}" alt="">
     
     </div>
     <div id="display">
@@ -101,7 +112,7 @@ const screenResize = () => {
       </div>
     <div>
     
-    <img src="./${displayImage}" alt="">
+    <img src="./${displayItem}" alt="">
 
     </div>
     <div id="display">
@@ -125,7 +136,7 @@ const imageLoad = (id) => {
     // localStorage.setItem("id", index)
     const displayProduct = products.filter(item => item.id === id)
     console.log(displayProduct)
-    localStorage.setItem("displayImage", JSON.stringify(displayProduct))
+    localStorage.setItem("displayItem", JSON.stringify(displayProduct))
     window.location.href = "index.html"
     // price.innerHTML =
 }
@@ -133,11 +144,11 @@ const imageLoad = (id) => {
 // product price
 const price = document.getElementById("price")
 price.innerHTML = ` <div>
-<h3>$${displayItem[0].price}</h3> 
+<h3>$${disitem[0].price}</h3> 
 
 <p class="discount">50%</p>
 </div> 
-<p id="oldPrice">$${displayItem[0].oldPrice}</p>
+<p id="oldPrice">$${disitem[0].oldPrice}</p>
 `
 
 
@@ -150,23 +161,23 @@ carrt.innerHTML = ` <div id="increament">
 
 <b onclick="decreament()">-</b>
 </div>
-<input id="cart" type="button" value="Add to cart" type="click" item="${displayItem[0].id
-    }" onclick="addToCart(${displayItem[0].id})">
+<input id="cart" type="button" value="Add to cart" type="click" item="${disitem[0].id
+    }" onclick="addToCart(${disitem[0].id})">
 <div >
 <!-- <img src="./assets/images/icon-cart.svg" alt=""> -->
 <!-- <p></p> -->
 </div>`
 function addToCart() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const productL = products.find((item) => item.id === displayItem[0].id);
+    const productL = products.find((item) => item.id === disitem[0].id);
     if (!productL) {
         console.log("product not found");
-        console.log(displayItem[0].id);
+        console.log(disitem[0].id);
 
         return;
     }
 
-    const existingItem = cart.find((item) => item.id === displayItem[0].id);
+    const existingItem = cart.find((item) => item.id === disitem[0].id);
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
@@ -181,13 +192,8 @@ function addToCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
 
-
-    //   let storage = localStorage.getItem(cart);
-    //   console.log(storage.length);
-    //   removeCart();
-    // cart.reduce(current, value)
-    const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty")) || []
-    console.log(itemInCart);
+    // const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty")) || []
+    // console.log(itemInCart);
     // updateCartCount();
 }
 const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty"))
@@ -199,7 +205,7 @@ document.getElementById("cartIcon").innerHTML = cart.length
 document.getElementById("qty").innerHTML = itemInCart.quantity || 0
 
 const increament = () => {
-    const existingItem = cart.find((item) => item.id === displayItem[0].id);
+    const existingItem = cart.find((item) => item.id === disitem[0].id);
 
     if (existingItem) {
         existingItem.quantity += 1;
@@ -215,7 +221,7 @@ const increament = () => {
 
 // increament
 const decreament = () => {
-    const existingItem = cart.find((item) => item.id === displayItem[0].id);
+    const existingItem = cart.find((item) => item.id === disitem[0].id);
 
     if (existingItem) {
         if (existingItem.quantity > 0) {
