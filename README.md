@@ -1,1 +1,1 @@
-# web3Bridge_product_details
+# web3Bridge_product_details is a mini website with product display page and cart page. Built with HTML, SCSS and javascript. A solution to frontend mentor ecommerce challenge (https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6). 
