@@ -122,15 +122,7 @@ const imageLoad = (id) => {
     // price.innerHTML =
 }
 
-// product price
-const price = document.getElementById("price")
-price.innerHTML = ` <div>
-<h3>$${disitem[0].price}</h3> 
 
-<p class="discount">50%</p>
-</div> 
-<p id="oldPrice">$${disitem[0].oldPrice}</p>
-`
 
 
 // add to cart
@@ -151,6 +143,7 @@ carrt.innerHTML = ` <div id="increament">
 console.log(disitem[0].id);
 //  existingItem = [];
 // localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
+let productL = products.find((item) => item.id === disitem[0].id);
 
 function addToCart() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -165,92 +158,107 @@ function addToCart() {
     existingItem = cart.find((item) => item.id === disitem[0].id);
 
     if (existingItem) {
-        existingItem.quantity = existingItem.quantity + 1;
+        // existingItem.quantity = existingItem.quantity + 1;
         localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
-        document.getElementById("qty").innerHTML = existingItem.quantity
 
-        // return
     } else {
         console.log("no existing item")
-        cart.unshift({ ...productL, quantity: productL.quantity + 1 });
+        productL.quantity = 1
+        cart.push(productL);
         localStorage.setItem("cart", JSON.stringify(cart));
-        localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
-
+        localStorage.setItem("itemInCartQty", JSON.stringify(productL))
         window.location.href = "index.html"
         // console.log(productLl);
     }
+    let itemQty = JSON.parse(localStorage.getItem("itemInCartQty"));
+
     // const show =disitem.find
     console.log(cart.length);
     console.log(existingItem);
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
     let productLl = cart.find((item) => item.id === disitem[0].id);
-    document.getElementById("qty").innerHTML = existingItem.quantity
-    // console.log(itemInCart);
-    // updateCartCount();
 }
-const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty"))
+const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty")) || []
 
 if (itemInCart.quantity) {
-    document.getElementById("qty").innerHTML = itemInCart.quantity[0]
+    document.getElementById("qty").innerHTML = itemInCart.quantity
 }
 else {
-    document.getElementById("qty").innerHTML = 0
+    document.getElementById("qty").innerHTML = productL.quantity
 }
-
-// const itemInCart = JSON.parse(localStorage.getItem("itemInCartQty")) || []
-// console.log(itemInCart);
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// document.getElementById("qty").innerHTML = existingItem.quantity
+existingItem = cart.find((item) => item.id === disitem[0].id) || productL;
+
 document.getElementById("cartIcon").innerHTML = cart.length
-// document.getElementById("qty").innerHTML = itemInCart.quantity || 0
+document.getElementById("qty").innerHTML = existingItem.quantity || 0
 
 const increament = () => {
     const existingItem = cart.find((item) => item.id === disitem[0].id);
-
-
-    // const existingItem = cart.find((item) => item.id === disitem[0].id);
-    const productL = products.find((item) => item.id === disitem[0].id);
-
     if (existingItem) {
         existingItem.quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        console.log(existingItem.quantity);
+
+        // document.getElementById("qty").innerHTML = existingItem.quantity + 1;
 
         localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
-    } else {
-        console.log("no existing item")
-        cart.unshift({ ...productL, quantity: 1 });
+        document.getElementById("qty").innerHTML = existingItem.quantity
+
     }
-    // if (existingItem) {
-    //     existingItem.quantity += 1;
-    //     console.log(existingItem);
-    //     localStorage.setItem("cart", JSON.stringify(cart));
+    const price = document.getElementById("price")
+    price.innerHTML = ` <div>
+<h3>$${disitem[0].price * existingItem.quantity}</h3> 
 
-    // }
-    // localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
-
-    // window.location.href = "index.html"
-
+<p class="discount">50%</p>
+</div> 
+<p id="oldPrice">$${disitem[0].oldPrice} </p>
+`
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// increament
+// decreament
 const decreament = () => {
     const existingItem = cart.find((item) => item.id === disitem[0].id);
-
     if (existingItem) {
-        if (existingItem.quantity > 0) {
-            existingItem.quantity -= 1;
-            console.log(existingItem);
-            localStorage.setItem("cart", JSON.stringify(cart));
+        existingItem.quantity -= 1;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        console.log(existingItem.quantity);
 
-        }
-        else { return }
+        // document.getElementById("qty").innerHTML = existingItem.quantity + 1;
+
+        localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
+        document.getElementById("qty").innerHTML = existingItem.quantity
     }
-    localStorage.setItem("itemInCartQty", JSON.stringify(existingItem))
 
-    window.location.href = "index.html"
+    const price = document.getElementById("price")
+    price.innerHTML = ` <div>
+<h3>$${disitem[0].price * existingItem.quantity}</h3> 
+
+<p class="discount">50%</p>
+</div> 
+<p id="oldPrice">$${disitem[0].oldPrice} </p>
+`
+    localStorage.setItem("cart", JSON.stringify(cart));
 
 }
+
+// total price
+
+// product price
+const price = document.getElementById("price")
+price.innerHTML = ` <div>
+<h3>$${disitem[0].price * existingItem.quantity}</h3> 
+
+<p class="discount">50%</p>
+</div> 
+<p id="oldPrice">$${disitem[0].oldPrice} </p>
+`
+let amount = cart.reduce((total, item) => total + item.price, 0);
+document.getElementById("totalPrice").innerHTML = amount
+console.log(amount);
 
 // display side nav
 const displaynav = () => {
