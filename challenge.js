@@ -245,7 +245,7 @@ const decreament = () => {
 
 }
 
-// total price
+// total pricee
 
 // product price
 const price = document.getElementById("price")
