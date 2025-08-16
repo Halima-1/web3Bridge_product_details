@@ -222,7 +222,7 @@ const increament = () => {
 // decreament
 const decreament = () => {
     const existingItem = cart.find((item) => item.id === disitem[0].id);
-    if (existingItem) {
+    if (existingItem && existingItem.quantity > 1) {
         existingItem.quantity -= 1;
         localStorage.setItem("cart", JSON.stringify(cart));
         console.log(existingItem.quantity);
@@ -249,9 +249,14 @@ const decreament = () => {
 
 // product price
 const price = document.getElementById("price")
-price.innerHTML = ` <div>
-<h3>$${disitem[0].price * existingItem.quantity}</h3> 
+let totalAmount
+if (existingItem && existingItem.quantity > 0) {
+    totalAmount = disitem[0].price * existingItem.quantity
+}
+else { totalAmount = disitem[0].price }
 
+price.innerHTML = ` <div>
+<h3>$${totalAmount}</h3> 
 <p class="discount">50%</p>
 </div> 
 <p id="oldPrice">$${disitem[0].oldPrice} </p>
