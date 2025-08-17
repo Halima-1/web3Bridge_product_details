@@ -140,7 +140,7 @@ main section .svg {
   top: 80px;
   gap: 85%;
 }
-main section .svg #svg-icon {
+main section .svg .svg-icon {
   width: 20px;
   height: 20px;
 }
