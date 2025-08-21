@@ -176,10 +176,8 @@ carrt.innerHTML = ` <div id="increament">
 
 <b onclick="decreament()">-</b>
 </div>
-
-    <button id="cart" item="${disitem.id
-    }" onclick="addToCart(${disitem.id})" >Add to cart</button>
-
+<input id="cart" type="button" value="Add to cart" type="click" item="${disitem.id
+    }" onclick="addToCart(${disitem.id})">
 <div >
 <!-- <img src="./assets/images/icon-cart.svg" alt=""> -->
 <!-- <p></p> -->

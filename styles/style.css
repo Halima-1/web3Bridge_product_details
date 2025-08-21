@@ -274,15 +274,14 @@ main :nth-child(2) #add-to-cart #increament b {
   font-size: 1.7rem;
 }
 
-main :nth-child(2) #add-to-cart button {
+main :nth-child(2) #add-to-cart input {
   background-color: hsl(26, 100%, 55%);
   width: 80%;
-  /* height: 30px; */
+  height: 30px;
   border: none;
   border-radius: 6px;
   margin-top: -50px;
   text-align: center;
-  padding: 10px;
 }
 
 main :nth-child(2) #add-to-cart #cart {
