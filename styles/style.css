@@ -274,7 +274,7 @@ main :nth-child(2) #add-to-cart #increament b {
   font-size: 1.7rem;
 }
 
-main :nth-child(2) #add-to-cart input {
+main :nth-child(2) #add-to-cart button {
   background-color: hsl(26, 100%, 55%);
   width: 80%;
   height: 30px;
