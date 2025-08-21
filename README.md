@@ -1,7 +1,5 @@
 # web3Bridge_product_details
 
-Products Page
-
 This project is a Products Page that displays available products with price. Users can view product details, add items to the cart, and navigate to the cart page to check the items in cart.
 
 Features:
