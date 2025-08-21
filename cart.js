@@ -100,37 +100,37 @@ cartProducts.map((item, index) => {
 //   console.log(item);
 // });
 
-// updating numbers of items in cart
-let count = cart.reduce((total, item) => total + item.quantity, 0);
-localStorage.setItem("cartLength", JSON.stringify(count));
-let updatecart = localStorage.getItem("cartLength");
-console.log(updatecart);
-document.getElementById("cartLength").innerHTML = updatecart;
-document.getElementById(
-    "itemLength"
-).innerHTML = `You have ${updatecart} items in your cart`;
-if (updatecart == 0 || !cart) {
-    let itemDisplay = document.getElementById("productDetails");
-    itemDisplay.innerHTML = "your cart is empty";
-}
+// // updating numbers of items in cart
+// let count = cart.reduce((total, item) => total + item.quantity, 0);
+// localStorage.setItem("cartLength", JSON.stringify(count));
+// let updatecart = localStorage.getItem("cartLength");
+// console.log(updatecart);
+// document.getElementById("cartLength").innerHTML = updatecart;
+// document.getElementById(
+//     "itemLength"
+// ).innerHTML = `You have ${updatecart} items in your cart`;
+// if (updatecart == 0 || !cart) {
+//     let itemDisplay = document.getElementById("productDetails");
+//     itemDisplay.innerHTML = "your cart is empty";
+// }
 
-// Ordered items and payment
-let totalPrice = cart.reduce(
-    (totalAmount, item) => totalAmount + item.price * item.quantity,
-    0
-);
-localStorage.setItem("totalPrice", totalPrice);
+// // Ordered items and payment
+// let totalPrice = cart.reduce(
+//     (totalAmount, item) => totalAmount + item.price * item.quantity,
+//     0
+// );
+// localStorage.setItem("totalPrice", totalPrice);
 
-// update total price UI
-let orderAmount = document.createElement("div");
-orderAmount.setAttribute("class", "total");
-orderAmount.innerHTML = `<p id="totalItems">Total(${updatecart} Items)</p>
-                <p id="totalPayment">$${totalPrice}</p>`;
-let orderAmountSibling = document.getElementById("checkout");
-let details = document.getElementById("details");
-details.insertBefore(orderAmount, orderAmountSibling);
-let order = document.createElement("div");
-order.setAttribute("class", "order");
-order.innerHTML = `<p>item(s) in total</p>
-                <p class="totalPayment">$${totalPrice}</p>`;
-details.insertBefore(order, orderAmount);
+// // update total price UI
+// let orderAmount = document.createElement("div");
+// orderAmount.setAttribute("class", "total");
+// orderAmount.innerHTML = `<p id="totalItems">Total(${updatecart} Items)</p>
+//                 <p id="totalPayment">$${totalPrice}</p>`;
+// let orderAmountSibling = document.getElementById("checkout");
+// let details = document.getElementById("details");
+// details.insertBefore(orderAmount, orderAmountSibling);
+// let order = document.createElement("div");
+// order.setAttribute("class", "order");
+// order.innerHTML = `<p>item(s) in total</p>
+//                 <p class="totalPayment">$${totalPrice}</p>`;
+// details.insertBefore(order, orderAmount);
