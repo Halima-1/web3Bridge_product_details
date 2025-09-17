@@ -54,32 +54,7 @@ const products = JSON.parse(localStorage.getItem("products"))
 const disitem = JSON.parse(localStorage.getItem("displayItem")) || product[0]
 
 const displayItem = disitem.images[0]
-// if (localStorage.getItem("displayItem")) {
-//     const displayItem = disitem.images[0]
 
-// }
-// else {
-//     const disitem = product[0]
-
-//     const displayItem = disitem.images[0]
-
-// }
-// const next = () => {
-//     const displayingProduct = JSON.parse(localStorage.getItem("displayItem")) || products
-//     // const displayProduct = products.filter(item => item.id === id)
-
-//     if (displayingProduct[0].id == 4) {
-//         console.log(displayingProduct[0].id)
-//         const firstItem = products.find(item, index => (item.id == 1))
-//         return
-//     }
-//     else {
-//         displayingProduct[0].id += 1
-//         console.log(displayingProduct)
-//         localStorage.setItem("displayItem", JSON.stringify(displayingProduct))
-//         window.location.href = "index.html"
-//     }
-// }
 const screenResize = () => {
 
     if (window.innerWidth >= 768) {
