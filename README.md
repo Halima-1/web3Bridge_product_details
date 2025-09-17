@@ -1,4 +1,4 @@
-#  Product details
+# Product details
 
 https://halima-1.github.io/web3Bridge_product_details/
 
