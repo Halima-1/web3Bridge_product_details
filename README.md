@@ -6,7 +6,7 @@ Displays a list of products dynamically
 
 Each product includes: Product image, old Price, discounted Price, Add to Cart functionality and Responsive design for mobile and desktop.
 
-Technologies Used:HTML5, CSS3, JavaScript (ES6) and LocalStorage for cart persistence.
+Technologies Used:HTML5, SAAS, JavaScript (ES6) and LocalStorage for cart persistence.
 
 
 Usage:
